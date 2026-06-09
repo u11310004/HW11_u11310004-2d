@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>地科學與地震學進階研究成果展現</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+        :root {
+            --bg-main: #f8fafc;
+            --bg-card: #ffffff;
+            --text-primary: #0f172a;
+            --text-secondary: #334155;
+            --text-muted: #64748b;
+            --accent-primary: #2563eb;
+            --accent-gradient: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            --accent-gradient-soft: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            --raspi-gradient: linear-gradient(135deg, #0d9488 0%, #0f766e 100%);
+            --border-color: #e2e8f0;
+            --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+            --shadow-lg: 0 10px 25px -5px rgb(0 0 0 / 0.05), 0 8px 10px -6px rgb(0 0 0 / 0.05);
+            --radius-lg: 16px;
+            --radius-md: 12px;
+            --radius-sm: 8px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', 'Noto Sans TC', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-secondary);
+            line-height: 1.75;
+            padding-bottom: 60px;
+        }
+
+        /* Hero Header Header */
+        .hero-banner {
+            background: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 100%);
+            position: relative;
+            padding: 80px 24px;
+            text-align: center;
+            overflow: hidden;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .hero-banner::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(59,130,246,0.05) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .hero-title {
+            font-size: 2.75rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            letter-spacing: -0.05em;
+            margin-bottom: 16px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto;
+            font-weight: 400;
+        }
+
+        /* Main Workspace Layout */
+        .workspace {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 24px;
+            display: block; /* We'll use block layout with tables/floats if needed or clean display table/block structure for beautiful styling */
+        }
+
+        .portfolio-grid {
+            display: block;
+        }
+
+        /* Portfolio Item Cards */
+        .showcase-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .showcase-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: #cbd5e1;
+        }
+
+        .card-tag {
+            display: inline-block;
+            padding: 6px 14px;
+            background-color: #f1f5f9;
+            color: var(--text-muted);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .card-tag.highlight {
+            background: var(--accent-gradient-soft);
+            color: var(--accent-primary);
+        }
+
+        .card-tag.raspi {
+            background: #ccfbf1;
+            color: #0f766e;
+        }
+
+        .card-title {
+            font-size: 1.85rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 18px;
+            letter-spacing: -0.03em;
+        }
+
+        .card-description {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+            text-align: justify;
+        }
+
+        /* Buttons & Actions */
+        .action-container {
+            margin-top: 24px;
+        }
+
+        .btn-premium {
+            display: inline-flex;
+            align-items: center;
+            padding: 12px 28px;
+            background: var(--accent-gradient);
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            font-size: 0.95rem;
+            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.25);
+            transition: all 0.2s ease;
+        }
+
+        .btn-premium:hover {
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.35);
+            transform: translateY(-1px);
+        }
+
+        /* Image Containers */
+        .showcase-media {
+            margin-top: 30px;
+            background-color: #f8fafc;
+            border: 1px solid #f1f5f9;
+            border-radius: var(--radius-md);
+            padding: 16px;
+            text-align: center;
+        }
+
+        .showcase-media img {
+            max-width: 100%;
+            height: auto;
+            border-radius: var(--radius-sm);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* Raspberry Pi Image Grid */
+        .raspi-image-grid {
+            margin-top: 32px;
+            display: table;
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 16px;
+        }
+
+        .raspi-grid-row {
+            display: table-row;
+        }
+
+        .raspi-grid-cell {
+            display: table-cell;
+            width: 50%;
+            vertical-align: top;
+            background: #fafafa;
+            border: 1px solid #e2e8f0;
+            padding: 12px;
+            border-radius: var(--radius-md);
+        }
+
+        .raspi-grid-cell img {
+            width: 100%;
+            height: auto;
+            border-radius: var(--radius-sm);
+            display: block;
+        }
+
+        /* Code Block Panel */
+        .code-panel {
+            margin-top: 30px;
+            background: #0f172a;
+            border-radius: var(--radius-md);
+            border: 1px solid #1e293b;
+            padding: 24px;
+            position: relative;
+            box-shadow: var(--shadow-md);
+        }
+
+        .code-panel-header {
+            display: block;
+            border-bottom: 1px solid #1e293b;
+            padding-bottom: 12px;
+            margin-bottom: 16px;
+        }
+
+        .code-dots {
+            display: inline-block;
+        }
+        .code-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 8px;
+        }
+        .dot-r { background-color: #ef4444; }
+        .dot-y { background-color: #f59e0b; }
+        .dot-g { background-color: #10b981; }
+
+        .code-panel-title {
+            color: #94a3b8;
+            font-size: 0.85rem;
+            font-family: monospace;
+            float: right;
+            margin-top: -2px;
+        }
+
+        pre {
+            font-family: 'Fira Code', Consolas, Monaco, 'Courier New', Courier, monospace;
+            font-size: 0.9rem;
+            color: #e2e8f0;
+            overflow-x: auto;
+            white-space: pre;
+            line-height: 1.6;
+        }
+
+        .code-keyword { color: #f472b6; }
+        .code-func { color: #38bdf8; }
+        .code-str { color: #34d399; }
+        .code-comment { color: #64748b; font-style: italic; }
+
+        /* Scientific Section Bullet Features */
+        .feature-list {
+            margin: 20px 0;
+            list-style: none;
+        }
+
+        .feature-item {
+            position: relative;
+            padding-left: 28px;
+            margin-bottom: 12px;
+            font-size: 1.05rem;
+        }
+
+        .feature-item::before {
+            content: "✦";
+            position: absolute;
+            left: 0;
+            color: var(--accent-primary);
+            font-weight: bold;
+        }
+        
+        .raspi-card .feature-item::before {
+            color: #0d9488;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding: 40px 24px;
+            text-align: center;
+            background-color: #ffffff;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2.1rem; }
+            .showcase-card { padding: 24px; }
+            .raspi-grid-row { display: block; }
+            .raspi-grid-cell { display: block; width: 100%; margin-bottom: 16px; }
+            .raspi-image-grid { border-spacing: 0; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="hero-banner">
+    <h1 class="hero-title">地球科學與地震學核心專案研發成果</h1>
+    <p class="hero-subtitle">全方位收錄震源機制模型反演、地體構造觀測實務與微型觀測站邊緣運算專案之學術實作精粹</p>
+</header>
+
+<div class="workspace">
+    <div class="portfolio-grid">
+
+        <!-- 項目 1 (原作業2) -->
+        <div class="showcase-card">
+            <span class="card-tag highlight">知識庫建構</span>
+            <h2 class="card-title">地震學導論：從理論基礎到社會應用數位專題</h2>
+            <p class="card-description">
+                本專題將生硬的地震學教科書基礎理論轉化為極具可讀性的數位知識系統。內容深度涵蓋地震波傳播力學、走時曲線的幾何光學推導，以及應力與應變的基礎張量關係。除了完整的理論脈絡梳理外，更進一步結合工程實務，剖析地表強震動特徵與近代減災、防災工程的實質整合應用，落實理論與社會安全的跨領域鏈結。
+            </p>
+            <div class="action-container">
+                <a href="https://u11310004.github.io/HW_2_NOTE/" target="_blank" class="btn-premium">開啟數位筆記網頁</a>
+            </div>
+        </div>
+
+        <!-- 項目 2 (原作業3) -->
+        <div class="showcase-card">
+            <span class="card-tag">專家學術論壇</span>
+            <h2 class="card-title">花蓮外海地震震源機制與地體構造應力場析論</h2>
+            <p class="card-description">
+                本報告針對 2018 年 10 月 23 日發生於台灣花蓮外海的顯著有感強震展開地質構造探討。報告詳盡追蹤並比對了中央氣象署觀測網與全球即時震源機制解 (rCMT) 的反演參數。藉由下半球立體投影數據，解析出該地震在東北—西南走向上的高角度逆斷層破裂特徵，並對應至菲律賓海板塊向北隱沒至歐亞大陸板塊的 Benioff 帶幾何特徵，完整探討沖繩海槽弧後擴張帶與琉球隱沒系統交會處的複雜應力互制機制。
+            </p>
+        </div>
+
+        <!-- 項目 3 (原作業5) -->
+        <div class="showcase-card">
+            <span class="card-tag">實地考察實務</span>
+            <h2 class="card-title">國家地震工程研究中心（NCREE）工程耐震前沿科技體驗</h2>
+            <p class="card-description">
+                親赴國家地震工程研究中心進行高階工程實地學術考察，深刻研習現代結構耐震設計的三大核心核心方針：「小震不壞、中震可修、大震不倒」。透過大型三軸地震模擬振動台、反力牆與強震即時觀測儀器的現地解說，深度探究反應譜、結構韌性配筋等核心力學概念。同時掌握了主動/被動制震器、速度型消能阻尼器及隔震支承墊的系統配置原理，有效破除大眾對於抗震工程與房屋結構防護的傳統歷史誤區。
+            </p>
+        </div>
+
+        <!-- 項目 4 (原作業6) -->
+        <div class="showcase-card">
+            <span class="card-tag">學術生涯規劃</span>
+            <h2 class="card-title">跨國科研視野與全球學術研究開拓座談實錄</h2>
+            <p class="card-description">
+                聚焦於全球化學術研究生涯的策略性藍圖規劃。聆聽青年學者宋冠毅老師傾囊相授其中外學術研究的心路歷程，脈絡性地剖析如何從零開始發掘國際科研趨勢、撰寫具備學術說服力的研究計畫書、應對高難度國際面試，進而前往海外頂尖機構開展前沿合作。座談核心聚焦於「破除未知恐懼、主動出擊爭取學術話語權」之執行力培養，並詳盡梳理國家釋出的國際研究基金與交流管道。
+            </p>
+        </div>
+
+        <!-- 項目 5 (原作業7) -->
+        <div class="showcase-card">
+            <span class="card-tag highlight">互動模組開發</span>
+            <h2 class="card-title">地球內部圈層構造與體波衰減機制動態互動網頁</h2>
+            <p class="card-description">
+                本研究運用網頁前端技術，將抽象的地球內部層狀圈層構造進行視覺化重構。網頁設計的核心在於運用體波（Body Waves，包含 P 波與 S 波）的走時特徵，去解析莫氏不連續面（Moho Line）、核幔邊界（Gutenberg Line）及內核邊界（Lehmann Line）的波速跳躍。系統不僅直觀呈現了地球非均向性力學機制與震波能量衰減，更創新整合了即時自我評測答題模組，顯著強化學術推廣的互動成效。
+            </p>
+            <div class="action-container">
+                <a href="https://huggingface.co/spaces/u11310004/HW7_3" target="_blank" class="btn-premium">進入互動學習空間</a>
+            </div>
+        </div>
+
+        <!-- 項目 6 (原作業8) -->
+        <div class="showcase-card">
+            <span class="card-tag">科學數值繪圖</span>
+            <h2 class="card-title">南東太平洋隆起規模 M 6.6 強震之震源機制反演與沙灘球繪製</h2>
+            <p class="card-description">
+                本項實作精準重現了 USGS 官方事件編號 us6000sz1d（南東太平洋隆起中洋脊張裂區）的震源參數解。利用 Python 科學計算生態系（包含 Matplotlib、ObsPy 震源機制模組），透過純數值反演將複雜的矩張量數據轉換為直觀的雙力偶沙灘球（Beachball Plot）。分析證實此事件具備高達 91% 的走向滑移（Strike-Slip）分量，精確求得主斷層面與輔助共軛面的走向、傾角與滑動角，展現洋脊超高速擴張應力場的張裂運動特徵。
+            </p>
+            <div class="showcase-media">
+                <img src="作業8圖.jpg" alt="走向滑移斷層沙灘球與震源參數反演成果圖">
+            </div>
+        </div>
+
+        <!-- 項目 7 (原作業9) -->
+        <div class="showcase-card">
+            <span class="card-tag highlight">進階理論研析</span>
+            <h2 class="card-title">震源矩張量力學與三維焦球立體投影理論成果展示</h2>
+            <p class="card-description">
+                這份高階網頁成果報告系統性地解構了描述斷層錯動能量釋放的本質物理量——地震矩（Seismic Moment, M₀ = μDS）以及震源矩張量（Seismic Moment Tensor）的數學矩陣模型。專案藉由高質感的網頁視覺排版，細緻推導了如何將三維焦球上的初動輻射圖樣投影至二維下半球立體投影網（Stereonet）的拓撲過程，為進階地震地體構造與區域應力場分析奠定強固的理論基石。
+            </p>
+            <div class="action-container">
+                <a href="https://huggingface.co/spaces/u11310004/4.1.4.2" target="_blank" class="btn-premium">瀏覽高階理論報告</a>
+            </div>
+        </div>
+
+        <!-- 項目 8 (原作業10) -->
+        <div class="showcase-card">
+            <span class="card-tag">演算法實作</span>
+            <h2 class="card-title">虛擬下半球 P 波初動極性立體投影幾何模擬系統</h2>
+            <p class="card-description">
+                本系統為一套完全自主研發的網頁端幾何模擬軟體。系統核心演算法採用下半球立體投影（Lower Hemisphere Stereonet Projection）公式，使用者可輸入全球觀測測站的專屬方位角（Azimuth）與出射角（Take-off Angle）。系統會全自動根據接收到的 P 波初動極性（壓縮 '+' 標示為紅色實心圓點；膨脹 '-' 標示為藍色空心圓圈）進行動態座標轉換與二維投影繪製，提供研究者判讀雙力偶斷層幾何面特徵的關鍵實作利器。
+            </p>
+            <div class="showcase-media">
+                <img src="作業10圖.jpg" alt="P波初動投影模擬器即時繪製成果">
+            </div>
+        </div>
+
+        <!-- 壓軸專案 (Raspberry Pi 專案) -->
+        <div class="showcase-card raspi-card" style="border-left: 5px solid #0d9488;">
+            <span class="card-tag raspi">邊緣運算與科技藝術</span>
+            <h2 class="card-title">【時空共鳴箱】歷史與動漫震度微縮預警儀專案開發</h2>
+            <p class="card-description">
+                <strong>【時空共鳴箱】歷史與動漫震度微縮預警儀</strong> 是一款將物聯網物緣運算技術與二次元迷因流行文化完美跨界融合的創意 Raspberry Pi 地震觀測儀專案。系統核心採用樹莓派微處理器架構，透過 I2C 通訊協定以 25Hz 高頻率即時採樣 MPU6050 三軸加速度計的空間重力向量。本專案徹底打破傳統科研數據枯燥乏味的刻板印象，創新研發出「十段式時空次元震度矩陣」演算模型，賦予數據生動幽默的時代演繹。
+            </p>
+
+            <h3 style="color: #0f766e; margin: 24px 0 12px 0; font-size: 1.3rem;">系統三大核心科學與硬體防護機制：</h3>
+            <ul class="feature-list">
+                <li class="feature-item">
+                    <strong>震度分級科學依據與演算矩陣：</strong>
+                    系統運用歐幾里得範數（Euclidean Norm）將 MPU6050 的 X、Y、Z 三軸加速度即時融合成不限方向的合成總加速度向量（$total\_g$）。以靜止狀態的 1.0g 為基準線。當動態外力超越 1.05g 閾值時即觸發震動事件，並依據精準的振幅級距，將現實世界震度幽默投射至動漫次元：如 1.05g 對應「貓咪主子跳下床」、1.90g 聯動《火影忍者》「佩恩·神羅天征」、大於等於 2.60g 則觸發「超級賽亞人極限變身」名場面。
+                </li>
+                <li class="feature-item">
+                    <strong>軟體調變實體 LED 燈光防燒毀機制：</strong>
+                    為了在微型硬體無實體限流電阻的严苛硬體配置下安全運作，專案核心引入了實體軟體 PWM（脈衝寬度調變）技術。在「即時監測模式」下，低於閾值時佔空比保持 0%（完全熄滅）；一旦超越 1.05g 判定震動，瞬間給予 15% 的安全恆亮佔空比，隨震幅維持溫和綠光。當抽到高階動漫強烈震度時，立即自動切換為「高能演習模式」，啟動 15% 與 0% 交替的數位極限爆閃（每秒 4 次），在兼顧硬體壽命的前提下，完美模擬基地警報的強烈科技張力。
+                </li>
+                <li class="feature-item">
+                    <strong>雲端推播連動與封包冷卻機制：</strong>
+                    當衝擊數據達標，樹莓派邊緣端會迅速將發震時間、精密 g 力值及所對應的動漫次元場景打包成標準 JSON 封包。利用 requests 函式庫透過安全的 HTTP POST 協定即時發送至 Discord Webhook。系統內置了 10 秒的警報冷卻鎖（Cooldown Lock），能有效拦截並過濾地震波連續晃動引起的重複觸發，確保實體燈效安全並兼顧雲端 API 頻寬的防護安全性。
+                </li>
+            </ul>
+
+            <div class="code-panel">
+                <div class="code-panel-header">
+                    <div class="code-dots">
+                        <span class="code-dot dot-r"></span>
+                        <span class="code-dot dot-y"></span>
+                        <span class="code-dot dot-g"></span>
+                    </div>
+                    <span class="code-panel-title">seismic_dashboard.py</span>
+                </div>
+<pre><code><span class="code-keyword">import</span> smbus
+<span class="code-keyword">import</span> time
+<span class="code-keyword">import</span> requests
+<span class="code-keyword">import</span> RPi.GPIO <span class="code-keyword">as</span> GPIO
+
+<span class="code-comment"># ==============================================================================</span>
+<span class="code-comment">#  微型地震觀測站核心整合控制台控制核心</span>
+<span class="code-comment"># ==============================================================================</span>
+<span class="code-keyword">def</span> <span class="code-func">main_menu</span>():
+    <span class="code-keyword">while</span> <span class="code-keyword">True</span>:
+        <span class="code-func">print</span>(<span class="code-str">"\033[H\033[J"</span>, end=<span class="code-str">""</span>) <span class="code-comment"># 清除畫面保持簡潔控制台</span>
+        <span class="code-func">print</span>(<span class="code-str">"======================================================="</span>)
+        <span class="code-func">print</span>(<span class="code-str">"    Raspberry Pi 微型地震觀測站 - 整合控制台"</span>)
+        <span class="code-func">print</span>(<span class="code-str">"======================================================="</span>)
+        <span class="code-func">print</span>(<span class="code-str">" [1] 測試 Discord Webhook 連線"</span>)
+        <span class="code-func">print</span>(<span class="code-str">" [2] 測試 LED 燈安全閃爍 (PWM 模式)"</span>)
+        <span class="code-func">print</span>(<span class="code-str">" [3] 查看 MPU6050 即時三軸數據"</span>)
+        <span class="code-func">print</span>(<span class="code-str">" [4] 🚀 啟動整合版地震監測與預警系統"</span>)
+        <span class="code-func">print</span>(<span class="code-str">" [0] 離開程式"</span>)
+        <span class="code-func">print</span>(<span class="code-str">"-------------------------------------------------------"</span>)
+        
+        choice = <span class="code-func">input</span>(<span class="code-str">"請輸入選項數字 (0-4): "</span>).strip()
+        <span class="code-keyword">if</span> choice == <span class="code-str">'0'</span>:
+            <span class="code-keyword">break</span></code></pre>
+            </div>
+
+            <!-- 依序加入 raspberrypi1 ~ 4 的 PNG 檔 -->
+            <div class="raspi-image-grid">
+                <div class="raspi-grid-row">
+                    <div class="raspi-grid-cell">
+                        <img src="raspberrypi1.png" alt="Raspberry Pi 實體硬體觀測裝置架構">
+                        <p style="text-align:center; font-size:0.85rem; color:var(--text-muted); margin-top:8px;">圖一：邊緣運算核心硬體配置</p>
+                    </div>
+                    <div class="raspi-grid-cell">
+                        <img src="raspberrypi2.png" alt="MPU6050 三軸加速度計感測端模組">
+                        <p style="text-align:center; font-size:0.85rem; color:var(--text-muted); margin-top:8px;">圖二：微型感測器高頻採樣狀態</p>
+                    </div>
+                </div>
+                <div class="raspi-grid-row">
+                    <div class="raspi-grid-cell">
+                        <img src="raspberrypi3.png" alt="實體軟體 PWM 安全保護燈效調校">
+                        <p style="text-align:center; font-size:0.85rem; color:var(--text-muted); margin-top:8px;">圖三：PWM 防燒毀安全調光與高能爆閃演練</p>
+                    </div>
+                    <div class="raspi-grid-cell">
+                        <img src="raspberrypi4.png" alt="Discord Webhook 雲端推播即時資訊封包">
+                        <p style="text-align:center; font-size:0.85rem; color:var(--text-muted); margin-top:8px;">圖四：動漫次元震度矩陣雲端即時警報紀錄</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<footer>
+    <p>© 2026 地球科學與地震學核心研發學術成果 showcase ｜ 網頁排版優化版</p>
+</footer>
+
+</body>
+</html>
